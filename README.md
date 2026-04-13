@@ -1,0 +1,1 @@
+Initial nix config
