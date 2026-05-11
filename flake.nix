@@ -20,6 +20,8 @@
 	system = "x86_64-linux";
 	modules = [
 	   ./configuration.nix
+#	   ./modules/nix_services/webstack.nix
+#	   ./modules/nix_services/sqlish.nix
 		
 	   # Home-manager here is a module but zen is an application	
 	   home-manager.nixosModules.home-manager

@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+#      ./neovim.nix
     ];
 	
 
@@ -20,7 +21,27 @@
   home-manager.useUserPackages = true;
   home-manager.backupFileExtension = "backup";
   home-manager.users.archon = import ./home.nix;
+
+
+
+
+  #----------------------------------- STEAM --------------------------------------------
+  programs.steam.enable = true;
 	
+
+  # --------------------------------------- DOCKER -------------------------------------------
+  virtualisation.docker.enable = true;
+  virtualisation.libvirtd.enable = true;
+
+
+ 
+   
+
+
+
+  # services.phpMyAdmin.enable = true;
+
+
 
   networking.networkmanager.wifi.powersave = false;
 
@@ -36,6 +57,7 @@
 
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
+  networking.wireguard.enable = true;
 
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
@@ -152,7 +174,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.archon = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "audio" "video" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "audio" "video" "docker" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       tree
     ];
@@ -165,7 +187,7 @@
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
     #Basics
-    vim 
+#    vim 
     wget
     curl
     lshw
@@ -173,6 +195,19 @@
     playerctl
     brightnessctl
     pavucontrol
+    gcc
+    gnumake
+    binutils
+    glibc.dev
+    qemu
+    nasm
+    #gbd
+    #valgrind
+
+
+
+    # Virtualization
+    docker-compose
 
     #Hyprland
     kitty
@@ -190,6 +225,13 @@
     # cudatoolkit
     # cudnn
     python3
+
+
+    lutris
+
+
+    #Cusor
+    phinger-cursors
   ];
 
 
