@@ -52,8 +52,15 @@
 	qemu
 	gimp
 	obsidian
-	lutris
+	firefox
+	qbittorrent
+	tor
+	tor-browser
+#	lutris
 	sioyek
+	godot
+	nautilus
+	pulseaudio
      ];
 
 

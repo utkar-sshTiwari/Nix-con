@@ -27,6 +27,33 @@
 
   #----------------------------------- STEAM --------------------------------------------
   programs.steam.enable = true;
+  programs.nix-ld.enable = true;
+
+
+
+  programs.nix-ld.libraries = with pkgs; [
+    alsa-lib
+    pulseaudio
+    pipewire
+
+    libGL
+    mesa
+
+    libX11
+    libXext
+    libXrender
+    libXi
+    libXrandr
+    libXcursor
+    libXinerama
+    SDL2
+    zlib
+    stdenv.cc.cc
+  ];
+
+
+
+
 	
 
   # --------------------------------------- DOCKER -------------------------------------------
@@ -36,7 +63,14 @@
 
  
    
-
+  #----------------- Overlay
+    nixpkgs.overlays = [
+    (_: prev: {
+      openldap = prev.openldap.overrideAttrs {
+        doCheck = !prev.stdenv.hostPlatform.isi686;
+      };
+    })
+  ];
 
 
   # services.phpMyAdmin.enable = true;
@@ -102,6 +136,10 @@
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];
+
+
+
+
   
   hardware.nvidia = {
      modesetting.enable = true;
@@ -219,7 +257,8 @@
     vulkan-loader
     nvidia-vaapi-driver
 
-
+    
+    alsa-utils
 
     #CUDA/AI
     # cudatoolkit
@@ -228,7 +267,6 @@
 
 
     lutris
-
 
     #Cusor
     phinger-cursors
