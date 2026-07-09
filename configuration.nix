@@ -49,10 +49,15 @@
     SDL2
     zlib
     stdenv.cc.cc
+
+    stdenv.cc.cc.lib
   ];
 
 
-
+  # ---------------------------------- DNS -------------------------------
+  networking.networkmanager.insertNameservers = [
+  	"1.1.1.1"
+  ];
 
 	
 
@@ -203,6 +208,8 @@
      enable = true;
      pulse.enable = true;
      alsa.enable = true;
+     alsa.support32Bit = true;
+     jack.enable = true;
      wireplumber.enable = true;
   };
 
@@ -212,7 +219,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.archon = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "audio" "video" "docker" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "audio" "video" "docker" "adbusers" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       tree
     ];
@@ -270,6 +277,9 @@
 
     #Cusor
     phinger-cursors
+
+    dnsutils
+    android-tools
   ];
 
 

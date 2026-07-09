@@ -61,6 +61,12 @@
 	godot
 	nautilus
 	pulseaudio
+	uv
+	kdePackages.kate
+	bottles
+	firebase-tools
+
+	devenv
      ];
 
 
